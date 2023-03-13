@@ -18,4 +18,4 @@ services:
       MYSQL_DATABASE: altschool
     volumes:
       - ./mysql:/var/lib/mysql
-      - ../initdb:/docker-entrypoint-initdb.d
+      - ./initdb:/docker-entrypoint-initdb.d
