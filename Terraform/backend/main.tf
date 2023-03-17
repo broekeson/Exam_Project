@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = "${file(var.credentials)}"
+  credentials = var.credentials
   project     = var.project
   region      = var.region
 }
@@ -25,20 +25,17 @@ resource "google_storage_bucket" "terraform_state" {
 }
 
 
-resource "google_storage_bucket_iam_member" "terraform_state_bucket_iam" {
+resource "google_storage_bucket_iam_binding" "terraform_backend_iam_binding" {
   bucket = google_storage_bucket.terraform_state.name
-  role   = "roles/storage.objectViewer"
-  member = "serviceAccount:${var.serviceAccount}"
+  role   = "roles/storage.objectAdmin"
+  members = [
+    "serviceAccount:${var.serviceAccount}"
+  ]
 }
 
-resource "google_storage_bucket_object" "terraform_state_lock" {
-  name    = var.object_name
-  bucket  = google_storage_bucket.terraform_state.name
-  content = ""
-}
 
 resource "google_storage_bucket_iam_member" "terraform_state_lock_bucket_iam" {
   bucket = google_storage_bucket.terraform_state.name
-  role   = "roles/storage.objectAdmin"
+  role   = "roles/storage.objectCreator"
   member = "serviceAccount:${var.serviceAccount}"
 }

@@ -1,7 +1,7 @@
 variable "project" {
   description = "The project ID to manage the Cloud Storage bucket"
   type        = string
-  default   = "altschool-project-380908"
+  default     = "altschool-project-380908"
 }
 
 variable "region" {
@@ -13,19 +13,12 @@ variable "region" {
 variable "credentials" {
   description = "The credentials to manage the Cloud Storage bucket"
   type        = string
-  default     = var("GOOGLE_APPLICATION_CREDENTIALS")
 }
 
 variable "bucket_name" {
   description = "The name of the Cloud Storage bucket"
   type        = string
   default     = "altschool-state-bucket"
-}
-
-variable "object_name" {
-  description = "The name of the Cloud Storage object"
-  type        = string
-  default     = "terraform.tfstate"
 }
 
 variable "serviceAccount" {

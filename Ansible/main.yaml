@@ -1,0 +1,66 @@
+---
+- name: Install and set up Jenkins
+  hosts: localhost
+  become: true
+  become_user: root
+  become_method: sudo
+  
+  vars:
+    jenkins_plugins:
+      - terraform-provider
+  tasks:
+    - name: Install Ja va
+      apt:
+        name: openjdk-8-jdk
+        state: present
+  
+    - name: Add Jenkins repository key
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
+  
+    - name: Add Jenkins repository
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+        state: present
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+  
+    - name: Install Jenkins
+      apt:
+        name: jenkins
+        state: present
+  
+    - name: Start Jenkins service
+      service:
+        name: jenkins
+        state: started
+  
+    - name: Wait for Jenkins to start
+      wait_for:
+        host: 127.0.0.1
+        port: 8080
+        state: started
+        timeout: 60
+  
+    - name: Install Jenkins plugins
+      jenkins_plugin:
+        name: "{{ item }}"
+        state: latest
+        url_username: admin
+        url_password: admin
+        url: http://localhost:8080
+      with_items: "{{ jenkins_plugins }}"
+  
+    - name: Install Jenkins Terraform provider
+      shell: |
+        mkdir -p /var/lib/jenkins/plugins
+        cd /var/lib/jenkins/plugins
+        wget https://github.com/jenkinsci/terraform-provider/releases/download/v1.0.2/terraform-provider.hpi
+  
+    - name: Restart Jenkins service
+      service:
+        name: jenkins
+        state: restarted
