@@ -1,0 +1,96 @@
+# Set backend configuration
+terraform {
+  backend "gcs" {
+    bucket = "my-terraform-state-bucket"
+    prefix = "my-project/terraform.tfstate"
+  }
+}
+
+# Define provider configuration
+provider "google" {
+  project = "my-project"
+  region  = "us-central1"
+}
+
+# Create VPC
+resource "google_compute_network" "vpc" {
+  name                    = "my-vpc"
+  auto_create_subnetworks = false
+  routing_mode            = "GLOBAL"
+
+  subnetwork_config {
+    mode = "CUSTOM"
+    secondary_ip_ranges = [
+      {
+        range_name      = "pods"
+        ip_cidr_range   = "10.128.0.0/14"
+      },
+      {
+        range_name      = "services"
+        ip_cidr_range   = "10.192.0.0/16"
+      }
+    ]
+  }
+}
+
+# Create subnets
+resource "google_compute_subnetwork" "subnet" {
+  count = 2
+
+  name          = "my-subnet-${count.index}"
+  ip_cidr_range = "10.0.${count.index+1}.0/24"
+  network       = google_compute_network.vpc.self_link
+
+  region = "us-central1"
+}
+
+# Create firewall rule to allow traffic within VPC
+resource "google_compute_firewall" "allow_internal_traffic" {
+  name    = "allow-internal-traffic"
+  network = google_compute_network.vpc.self_link
+
+  allow {
+    protocol = "all"
+    source_ranges = [
+      google_compute_network.vpc.ip_cidr_range
+    ]
+  }
+
+  source_tags = ["allow-all"]
+  target_tags = ["allow-all"]
+}
+
+# Create GKE cluster
+resource "google_container_cluster" "my_cluster" {
+  name               = "my-cluster"
+  location           = "us-central1"
+  initial_node_count = 3
+
+  # Set network configuration
+  network = google_compute_network.vpc.self_link
+
+  subnetwork = [
+    for subnet in google_compute_subnetwork.subnet : subnet.self_link
+  ]
+
+  # Set node pool configuration
+  node_pool {
+    name       = "my-node-pool"
+    machine_type = "n1-standard-1"
+    disk_size_gb = 100
+  }
+
+  # Set cluster addons
+  addons_config {
+    horizontal_pod_autoscaling {
+      disabled = false
+    }
+  }
+
+  # Set security configuration
+  master_authorized_networks_config {
+    cidr_blocks = [
+      google_compute_network.vpc.ip_cidr_range
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "altschool-project-380908",
+  "private_key_id": "9144fc22bccd03db8caf77fafab61074b525a856",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxhMBnCb+5wYBa\nmgd75XUTcIK55uSc0sjuqaTVit5QLGEiUycDoRROVcizzAZkGdR1sIEgSDVfR1KT\nCDMhSEMNc8roQ40/QY0BeXbmXQxTHfXooNvQoLDF/PJjvWt8BiSe5j4O7yf15/fi\nnCQPQazQbbiQW6+58Jnhrg+zC5EZFH91BgqFjoIsRgl5ZDkA51mbfIoO2/9QsIC8\nYb7NpHDAg4rxd4scPkyuUZzb9bS0X2ZeJ8E6vLBiQAa39ygXE8SiqCSoTSNVyXbN\nWBAd3z3NkQ3WbADk5JTP0cUpqE6cNq/IpYrIGn1w9YngH4HSNr22VCKO4zHsz+d0\nxNafCZyRAgMBAAECggEAAJ3A2zq17yukSew59Wyk/OXJlmKeTYsPxoBRQaqDPg0B\nY1CdlI4lF2aF1VXyebt7ONNdh2KoyMVjHH6NSuLI1M2fmTHO1jbgie5FguQ0zD8Q\n4PdZ+/3qzy0jHESGkH4m92Q+N+gNn/Vnr2IyX9kvA+Q1nU6sK/2RUy67ADicjtU5\nZfDUT5zSv/L2rA7uki9xVXuUMvcow9Kbt+BmwKqmlpDmD8w5ZacJVZ2HevMXW8lZ\nzHVhN1VbahD8AMbhbny4TGqoUOkxd4SOb3Jck+GM5oTKYzV6XIVqvEuiirHqAL9X\nKp89OcHxfbZ+KX+s6F0hOQGow6mjl1+Ll/vtPAOMAQKBgQDm7Y9nooxA4Kpsg2xY\nu+t/wXMUKVBZpPOnAMQR+OxjDBNpBq01ejxygUDhnTk2FfIcVJt8DdnnAoytxs0S\nE9Cav9do2eJ7NRhF6yQkWcBrwxTe0jLFyREgGNLmsWKes2eTwwx8lzPTosdKjgnE\nOzlnsakmJ82n9oPjQq7Zs7XiEQKBgQDEyrlOjnZQLhxSGvw7SOgjFBYyVItjTMtu\n2U0Sl4AQ1jYJgLFb9eo8d3ymc4syzOPo6mbwijOHEZujepQwmwEDeRbNK83RhoDb\nW/YA34unw/DBTYSLkRqfPHyFM64dcSS6KkaE6UGH3xPxr6ph1fZ8r9exNa5KXss1\nrLfIGSWSgQKBgAaXu6NayaREhbkJW3uBCe0gybdGoqucgPRAmlhlAeKmApvZ+/Ht\n5nHibMbEJVD8+WeDpti40IK+2ONRLKOaezcfyPeOWN/pmSLN3r9G7K5m6F6gI6Dv\n55RCASti3wzm1Esso1ufOXSOTiA7w92dTzs9oDWdp0pnSEahrbo7XjLxAoGBAKyn\nF3EeeBrceahnWIhC7Ldp9hduKWSTiZ/VMlNva8JZzcsEh5ag6ELoqgn3MVb+f65n\niKzc81w7TItfDgie1YLQh/q1xbtgAEl0Ix6dAg/MTrupYPJ5+htem/jZYJcgHxLd\n6ETPyNiGFR9j+V4gtEKsm9YzvJgvFqYexJbfySEBAoGASwXhClSq1fqlypt0JWM7\nsu0D4EMGg1Ixupioe/gWcYzW2kj+1iT2tCoTzX+krpcPTzT7cRirw2f8SQCyS9zz\n8Azg+YrdrFsmwJ/cIpaMQSoPkIaQtwvIULVHKL3eP5CFPiv7XFQ3RuWfjFJHPS+U\nnrgI5btRKo35xOmzCkSVPyY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "broekeson@altschool-project-380908.iam.gserviceaccount.com",
+  "client_id": "100904135872749842942",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/broekeson%40altschool-project-380908.iam.gserviceaccount.com"
+}
