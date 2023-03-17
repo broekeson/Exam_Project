@@ -94,3 +94,72 @@ resource "google_container_cluster" "my_cluster" {
     ]
   }
 }
+
+
+# Jenkins installation
+provider "google" {
+  project = "PROJECT_ID"
+  region  = "us-central1"
+}
+
+resource "google_container_cluster" "my_cluster" {
+  name               = "my-cluster"
+  location           = "us-central1-c"
+  initial_node_count = 1
+
+  node_config {
+    machine_type = "n1-standard-1"
+  }
+}
+
+resource "google_service_account" "jenkins_sa" {
+  account_id   = "jenkins-sa"
+  display_name = "Jenkins Service Account"
+}
+
+resource "google_project_iam_binding" "jenkins_sa_binding" {
+  role    = "roles/container.admin"
+  members = ["serviceAccount:${google_service_account.jenkins_sa.email}"]
+}
+
+resource "google_service_account_key" "jenkins_sa_key" {
+  service_account_id = google_service_account.jenkins_sa.id
+}
+
+resource "kubernetes_secret" "jenkins_sa_secret" {
+  metadata {
+    name = "jenkins-sa-secret"
+  }
+  data = {
+    "service-account.json" = base64encode(google_service_account_key.jenkins_sa_key.private_key)
+  }
+}
+
+resource "jenkins_plugin" "gke_plugin" {
+  plugin_id = "google-kubernetes-engine"
+}
+
+resource "jenkins_cloud" "gke_cloud" {
+  name = "GKE"
+  jenkins_url = "http://localhost:8080/"
+  description = "Google Kubernetes Engine"
+  plugin_name = jenkins_plugin.gke_plugin.id
+
+  cloud_config {
+    name               = "GKE"
+    project_id         = "PROJECT_ID"
+    zone               = "us-central1-c"
+    credentials_secret = kubernetes_secret.jenkins_sa_secret.metadata[0].name
+  }
+
+  templates {
+    name   = "default"
+    label  = "gke"
+    image  = "gcr.io/google-containers/cluster-proportional-autoscaler-amd64:1.7.1"
+    remote_fs = "/var/jenkins_home"
+
+    num_executors = 3
+    jvm_options   = "-Xmx2048m"
+    # Add any additional plugins or configurations here
+  }
+}
