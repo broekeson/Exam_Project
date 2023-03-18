@@ -87,6 +87,7 @@ resource "google_container_cluster" "primary" {
     }
   }
 
+
   #Set master auth
   master_authorized_networks_config {
     cidr_blocks {
@@ -95,6 +96,14 @@ resource "google_container_cluster" "primary" {
       ]
     }
   }
+
+   oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform",
+      "https://www.googleapis.com/auth/compute",
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+    ]
 
 }
 
@@ -112,42 +121,4 @@ resource "google_project_iam_binding" "cluster_admin" {
 
 resource "google_service_account_key" "jenkins_sa_key" {
   service_account_id = google_service_account.jenkins_service_account.id
-}
-
-resource "kubernetes_secret" "jenkins_secret" {
-  metadata {
-    name = "jenkins-secret"
-  }
-
-  data = {
-    "jenkins.json" = base64encode(google_service_account_key.jenkins_sa_key.private_key)
-  }
-}
-
-resource "jenkins_plugin" "gke_plugin" {
-  plugin_id = "google-kubernetes-engine"
-}
-
-resource "jenkins_cloud" "gke_cloud" {
-  name        = "gke-cloud"
-  jenkins_url = "http://localhost:8080"
-  plugin_name = jenkins_plugin.gke_plugin.id
-  description = "GKE Cloud"
-
-  cloud_config {
-    name               = "gke-cloud"
-    project_id         = var.project
-    zone               = var.region
-    credentials_secret = kubernetes_secret.jenkins_secret.metadata[0].name
-  }
-
-  templates {
-    name      = "default"
-    label     = "gke-cloud"
-    image     = "gcr.io/google-containers/cluster-proportional-autoscaler-amd64:1.7.1"
-    remote_fs = "/home/jenkins"
-
-    num_executors = 3
-    jvm_options   = "-Xmx2048m"
-  }
 }
