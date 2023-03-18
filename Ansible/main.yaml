@@ -9,10 +9,20 @@
     jenkins_plugins:
       - terraform-provider
   tasks:
-    - name: Install Ja va
+    - name: update_cache=yes
       apt:
-        name: openjdk-8-jdk
+        update_cache: yes
+
+    - name: Install Java, default-jre and gnupg
+      apt:
+        name: "{{ item }}"
         state: present
+      with_items:
+        - default-jre
+        - openjdk-11-jdk
+        - gnupg
+        - apt-transport-https
+        - wget
   
     - name: Add Jenkins repository key
       apt_key:
@@ -23,6 +33,9 @@
       apt_repository:
         repo: deb https://pkg.jenkins.io/debian-stable binary/
         state: present
+
+    - name: add PPA using command
+      command: echo "deb https://pkg.jenkins.io/debian-stable binary/" | tee /etc/apt/sources.list.d/jenkins.list
 
     - name: Update apt cache
       apt:
