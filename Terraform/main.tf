@@ -1,15 +1,15 @@
 terraform {
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "4.57.0"
     }
   }
 }
 
 provider "google" {
-  project = var.project
-  region  = var.region
+  project     = var.project
+  region      = var.region
   credentials = var.credentials
 }
 
@@ -93,13 +93,13 @@ resource "google_container_cluster" "primary" {
     }
   }
 
-   oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform",
-      "https://www.googleapis.com/auth/compute",
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
-    ]
+  oauth_scopes = [
+    "https://www.googleapis.com/auth/cloud-platform",
+    "https://www.googleapis.com/auth/compute",
+    "https://www.googleapis.com/auth/devstorage.read_only",
+    "https://www.googleapis.com/auth/logging.write",
+    "https://www.googleapis.com/auth/monitoring",
+  ]
 
 }
 
@@ -120,7 +120,7 @@ resource "google_service_account_key" "jenkins_sa_key" {
 }
 
 resource "local_file" "kubeconfig" {
-  content     = google_container_cluster.primary.kubeconfig[0].raw_config
-  filename    = "kubeconfig.yaml"
+  content         = google_container_cluster.primary.kubeconfig[0].raw_config
+  filename        = "kubeconfig.yaml"
   file_permission = "400"
 }
