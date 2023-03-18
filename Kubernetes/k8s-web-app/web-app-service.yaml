@@ -4,12 +4,10 @@ metadata:
   name: web-app-service
   namespace: web-app
 spec:
-  selector:
-    app: web-app
   ports:
   - name: http
     port: 80
     targetPort: 80
     type: LoadBalancer
-    selector:
-     app: web-app
+  selector:
+    app: web-app
