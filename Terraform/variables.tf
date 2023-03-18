@@ -1,22 +1,35 @@
-variable "project" {
-  description = "The project ID to deploy to"
-  type        = string
-  default     = "altschool-project-380908"
+variable "DIGITALOCEAN_TOKEN" {
+  type = string
+}
+
+variable "vpc" {
+  type = string
+  default = "altschool-vpc"
 }
 
 variable "region" {
-  description = "The region to deploy to"
-  type        = string
-  default     = "us-central1"
+  type = string
+  default = "lon1"
 }
 
-variable "credentials" {
-  description = "The credentials to deploy to"
-  type        = string
+variable "cidr_block" {
+  type = string
+  default = "192.168.1.0/24"
 }
 
-variable "vpc_name" {
-  description = "The name of the VPC network"
-  type        = string
-  default     = "altschool-vpc"
+variable "cluster_name" {
+  type = string
+  default = "altschool-cluster"
 }
+
+variable "version_name" {
+  type = string
+  default = "1.25.4-do.0"
+}
+  
+
+variable "worker_name" {
+  type = string
+  default = "altschool-pool"
+}
+
