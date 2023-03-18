@@ -50,30 +50,3 @@
       service:
         name: jenkins
         state: started
-  
-    - name: Wait for Jenkins to start
-      wait_for:
-        host: 127.0.0.1
-        port: 8080
-        state: started
-        timeout: 60
-  
-    - name: Install Jenkins plugins
-      jenkins_plugin:
-        name: "{{ item }}"
-        state: latest
-        url_username: admin
-        url_password: admin
-        url: http://localhost:8080
-      with_items: "{{ jenkins_plugins }}"
-  
-    - name: Install Jenkins Terraform provider
-      shell: |
-        mkdir -p /var/lib/jenkins/plugins
-        cd /var/lib/jenkins/plugins
-        wget https://github.com/jenkinsci/terraform-provider/releases/download/v1.0.2/terraform-provider.hpi
-  
-    - name: Restart Jenkins service
-      service:
-        name: jenkins
-        state: restarted
