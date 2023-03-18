@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mmysql-initdb-config
+  name: mysql-initdb-config
   namespace: web-app
 data:
   user_info.sql: |
