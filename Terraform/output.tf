@@ -1,3 +1,4 @@
 output "kubeconfig" {
-  value = google_container_cluster.primary.master_auth.0.client_certificate_config.0.client_certificate
+  value = google_container_cluster.primary.kubeconfig[0].raw_config
+  sensitive = true
 }

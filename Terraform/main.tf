@@ -4,10 +4,6 @@ terraform {
       source = "hashicorp/google"
       version = "4.57.0"
     }
-
-    jenkins = {
-
-    }
   }
 }
 
@@ -121,4 +117,10 @@ resource "google_project_iam_binding" "cluster_admin" {
 
 resource "google_service_account_key" "jenkins_sa_key" {
   service_account_id = google_service_account.jenkins_service_account.id
+}
+
+resource "local_file" "kubeconfig" {
+  content     = google_container_cluster.primary.kubeconfig[0].raw_config
+  filename    = "kubeconfig.yaml"
+  file_permission = "400"
 }
