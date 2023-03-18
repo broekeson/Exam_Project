@@ -1,4 +1,4 @@
-variable "DIGITALOCEAN_TOKEN" {
+variable "do_token" {
   type = string
 }
 
