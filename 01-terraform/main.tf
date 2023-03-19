@@ -1,6 +1,6 @@
 provider "digitalocean" {
   # Configuration options
-  token = var.do_token
+  token = "${var.DO_TOKEN}"
 }
 
 # Create a VPC network

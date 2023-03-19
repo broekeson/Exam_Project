@@ -1,7 +1,3 @@
-variable "do_token" {
-  type = string
-}
-
 variable "vpc" {
   type = string
   default = "altschool-vpc"
