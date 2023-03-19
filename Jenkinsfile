@@ -13,7 +13,9 @@ pipeline {
                     terraform apply -auto-approve
                     '''
 
-                    env.KUBECONFIG = 'kubeconfig.yaml'
+                    environment {
+                        KUBECONFIG = 'kubeconfig.yaml'
+                    }
                     sh 'kubectl get nodes'
                   }
                 }
