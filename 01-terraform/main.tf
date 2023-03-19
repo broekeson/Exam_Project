@@ -22,6 +22,8 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
     node_count = 3
     auto_scale = true
     min_nodes = 1
+    max_nodes = 5
+    tags = [ "workers" ]
   }
 }
 
