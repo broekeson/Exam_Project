@@ -10,8 +10,7 @@ pipeline {
                 dir('01-terraform') {
                     sh '''
                     terraform init
-                    terraform plan
-                    terraform apply -auto-approve
+                    terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
                     '''
                 }
                 sh 'kubectl config use-context exam-cluster'
