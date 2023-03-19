@@ -17,12 +17,5 @@ pipeline {
                 }
             }
         }
-        stage('deploy app') {
-            steps {
-                script {
-                  dir('02-kubernetes') {
-                    sh 'kubectl apply -f .'
-                  }
-                }
-            }
+        stage('install helm with bash
         }
