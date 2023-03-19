@@ -22,9 +22,9 @@ pipeline {
          }
         stage('add helm repo and install nginx-ingress') {
           steps {
-            sh 'helm repo add stable https://kubernetes-charts.storage.googleapis.com/'
+            sh 'helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx'
             sh 'helm repo update'
-            sh 'helm install nginx-ingress stable/nginx-ingress --set controller.replicaCount=2 --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux'
+            sh 'helm install nginx-ingress ingress-nginx/ingress-nginx'
            }
           }
      }
