@@ -1,24 +1,19 @@
 pipeline {
  agent any
+  environment {
+   KUBECONFIG = '/var/lib/jenkins/workspace/altschool/01-terraform/kubeconfig.yaml'
+  }
   stages {
-    stage('Install helm') {
-      steps {
-        sh 'curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash'
-      }
-    }
-
-    stage('add helm repo and install nginx-ingress') {
-      steps {
-        sh 'helm repo add stable https://kubernetes-charts.storage.googleapis.com/'
-        sh 'helm repo update'
-        sh 'helm install nginx-ingress stable/nginx-ingress --set controller.replicaCount=2 --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux'
-      }
+    stage('authenticate'){
+       steps {
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
+          sh "export KUBECONFIG=${KUBECONFIG_FILE}"
+          sh "curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash"
+          sh 'helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx'
+          sh 'helm repo update'
+          sh 'helm install nginx-ingress ingress-nginx/ingress-nginx'
+        }
     }
   }
-
-  post {
-    success {
-      sh 'helm ls'
-    }
-  }
-}
+ } 
+} 
