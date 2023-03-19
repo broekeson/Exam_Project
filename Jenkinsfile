@@ -9,7 +9,6 @@ pipeline {
                 script {
                   dir('01-terraform') {
                     sh '''
-                    export TF_API_TOKEN=$TF_API_TOKEN
                     terraform init
                     terraform plan
                     terraform apply -auto-approve
