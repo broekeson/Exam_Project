@@ -3,6 +3,8 @@ variable "vpc" {
   default = "altschool-vpc"
 }
 
+variable "DO_TOKEN" {}
+
 variable "region" {
   type = string
   default = "lon1"
