@@ -8,7 +8,7 @@ pipeline {
                    withCredentials(string(credentialsId: 'do_token', variable: 'token')) {
                     echo 'creating kubernetes cluster'
                     sh 'terraform init'
-                    sh "terraform apply -auto-approve -var 'do_token=${token}'"
+                    sh "terraform apply -auto-approve -var 'do_token=$token'"
 
                     env.KUBECONFIG = 'kubeconfig.yaml'
                     sh 'kubectl get nodes'
