@@ -1,7 +1,7 @@
 pipeline {
  agent any
   environment {
-   KUBECONFIG = '/var/lib/jenkins/workspace/altschool/01-terraform/kubeconfig.yaml'
+   KUBECONFIG_FILE = '/var/lib/jenkins/workspace/altschool/01-terraform/kubeconfig.yaml'
   }
   stages {
     stage('authenticate'){
