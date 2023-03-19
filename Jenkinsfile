@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('provision cluster') {
             steps {
-                script {
                   dir('01-terraform') {
                     sh '''
                     terraform init
@@ -20,5 +19,4 @@ pipeline {
                 }
             }
         }
-    }
-}
+   }
