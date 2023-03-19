@@ -20,7 +20,7 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
     name = var.worker_name
     size = "s-2vcpu-2gb"
     node_count = 3
-    auto_scale = false
+    auto_scale = true
   }
 }
 
