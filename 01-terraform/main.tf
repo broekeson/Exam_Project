@@ -21,6 +21,7 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
     size = "s-2vcpu-2gb"
     node_count = 3
     auto_scale = true
+    min_nodes = 1
   }
 }
 
