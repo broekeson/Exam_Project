@@ -42,5 +42,17 @@ pipeline {
             '''
           } 
         }
+         stage('Create ClusterIssuer') {
+          steps {
+              dir('04-kubernetes') {
+              sh '''
+              kubectl apply -f ingress-controller/cluster-issuer.yaml
+              kubectl apply -f ingress-controller/monitoring.yaml
+              kubectl apply -f ingress-controller/sock-shop-ingress.yaml
+              kubectl apply -f ingress-controller/web-app-ingress.yaml
+                '''
+                }
+            }
+         }
     }
 }
