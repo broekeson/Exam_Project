@@ -2,7 +2,7 @@ variable "DO_TOKEN" {}
 
 variable "nginx_ip" {
   type    = string
-  default = "157.245.29.7"
+  default = "157.245.29.7."
 }
 
 variable "cluster_name" {
@@ -22,22 +22,22 @@ variable "record_type" {
 
 variable "sockshop" {
   type    = string
-  default = "sock-shop."
+  default = "sock-shop"
 }
 
 variable "webapp" {
   type    = string
-  default = "web-app."
+  default = "web-app"
 }
 
 variable "grafana" {
   type    = string
-  default = "grafana."
+  default = "grafana"
 }
 
 variable "prometheus" {
   type    = string
-  default = "prometheus."
+  default = "prometheus"
 }
 
 variable "worker_name" {
