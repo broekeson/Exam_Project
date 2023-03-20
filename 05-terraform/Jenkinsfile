@@ -9,7 +9,7 @@ pipeline {
         steps {
           dir('05-terraform/terraform') {
             sh '''
-            INGRESS_IP=$(kubectl get service ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+            INGRESS_IP=$(kubectl get service -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
             terraform init'
             terraform apply  -var 'ingress_ip=$INGRESS_IP' -var 'DO_TOKEN=${DO_TOKEN}' -auto-approve
             '''
