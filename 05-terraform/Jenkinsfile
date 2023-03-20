@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    environment {
+       DO_TOKEN = credentials('do_token')
+    }
+    stages {
+       stage('DNS Setup') {
+          steps {
+              dir('terraform') {
+                sh '''
+                terraform init
+                terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
+                '''
+              }
+          }
+        }
+    }
+
+    post {
+       success {
+        build 'deploy'
+       }
+    }
+}
