@@ -1,36 +1,36 @@
 variable "DO_TOKEN" {}
 
 variable "cluster_name" {
-  type = string
+  type    = string
   default = "altschool-cluster"
 }
 
 variable "domain_name" {
-  type = string
+  type    = string
   default = "ekene.tech"
 }
 
 variable "record_type" {
-  type = string
+  type    = string
   default = "CNAME"
 }
 
 variable "sockshop" {
-  type = string
+  type    = string
   default = "sock-shop"
 }
 
 variable "webapp" {
-  type = string
+  type    = string
   default = "web-app"
 }
 
 variable "grafana" {
-  type = string
+  type    = string
   default = "grafana"
 }
 
 variable "prometheus" {
-  type = string
+  type    = string
   default = "prometheus"
 }
