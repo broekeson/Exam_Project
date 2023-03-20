@@ -10,10 +10,8 @@ pipeline {
           dir('05-terraform/terraform') {
           script {
           def externalIp = sh(returnStdout: true, script: 'kubectl get service -n ingress-nginx -o jsonpath="{.status.loadBalancer.ingress[0].ip}"').trim()
-           sh '''
-             terraform init
-             terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN} -var 'external_ip=${externalIp}'
-             '''
+           sh 'terraform init'
+           sh "terraform apply  -var 'DO_TOKEN=${DO_TOKEN}' -var 'external_ip=${externalIp}' -auto-approve"
         }
       }
     }
