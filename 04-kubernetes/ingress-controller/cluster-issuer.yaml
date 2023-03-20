@@ -5,7 +5,7 @@ metadata:
   name: letsencrypt-prod
 spec:
   acme:
-    email: broekeson@gmail.com
+    email: ekene@icojon.ng
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod
