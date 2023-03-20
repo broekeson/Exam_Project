@@ -3,14 +3,8 @@ provider "digitalocean" {
   token = var.DO_TOKEN
 }
 
-data "digitalocean_kubernetes_cluster" "primary" {
-  name = var.cluster_name
-}
-
-
-#Access the Load Balancer IP in the kubernetes cluster
-data "digitalocean_loadbalancer" "alb" {
-  id = data.digitalocean_kubernetes_cluster.primary.node_pool[0].id
+resource "digitalocean_domain" "mydomain" {
+  name = var.domain_name
 }
 
 resource "digitalocean_record" "alb" {
