@@ -34,3 +34,8 @@ variable "prometheus" {
   type    = string
   default = "prometheus"
 }
+
+variable "worker_name" {
+  type    = string
+  default = "altschool-pool"
+}
