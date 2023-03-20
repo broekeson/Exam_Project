@@ -8,13 +8,13 @@ pipeline {
        stage('Get External IP') {
         steps {
           dir('05-terraform/terraform') {
-          script {
-           INGRESS_IP=$(kubectl get service ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-           sh 'terraform init'
-           sh "terraform apply  -var 'ingress_ip=$INGRESS_IP' -var 'DO_TOKEN=${DO_TOKEN}' -auto-approve"
-        }
-      }
-    }
+            sh '''
+            INGRESS_IP=$(kubectl get service ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+            terraform init'
+            terraform apply  -var 'ingress_ip=$INGRESS_IP' -var 'DO_TOKEN=${DO_TOKEN}' -auto-approve
+            '''
+           }  
+         }
        }
     }
 
