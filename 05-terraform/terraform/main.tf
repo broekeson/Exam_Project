@@ -11,7 +11,7 @@ resource "digitalocean_record" "alb" {
   domain = digitalocean_domain.mydomain.name
   type   = "A"
   name   = var.domain_name
-  value  = "${var.ingress_ip}"
+  value  = "${var.nginx_ip}"
   ttl    = 3600
 }
 
