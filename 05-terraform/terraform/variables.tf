@@ -1,5 +1,7 @@
 variable "DO_TOKEN" {}
 
+variable "external_ip" {}
+
 variable "cluster_name" {
   type    = string
   default = "altschool-cluster"

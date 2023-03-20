@@ -13,15 +13,11 @@ data "digitalocean_loadbalancer" "alb" {
   id = data.digitalocean_kubernetes_cluster.primary.node_pool[0].id
 }
 
-resource "digitalocean_domain" "mydomain" {
-  name  = var.domain_name
-}
-
 resource "digitalocean_record" "alb" {
   domain = digitalocean_domain.mydomain.name
   type   = "A"
   name   = var.domain_name
-  value  = data.digitalocean_loadbalancer.alb.ip
+  value  = var.external_ip
   ttl    = 3600
 }
 
