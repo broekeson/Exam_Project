@@ -29,7 +29,6 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
   name: ingress-nginx-controller
-  namespace: ingress-nginx
 spec:
   type: LoadBalancer
   externalTrafficPolicy: Local
