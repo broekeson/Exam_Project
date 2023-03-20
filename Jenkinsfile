@@ -26,16 +26,26 @@ pipeline {
                 '''
             }
         }
-          stage('Install cert-manager') {
-          steps {
-            sh '''
-            helm repo add jetstack https://charts.jetstack.io
-            helm repo update
-            kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
-            helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.11.0
-            '''
-          } 
+        stage('Install cert-manager') {
+            steps {
+                sh '''
+                helm repo add jetstack https://charts.jetstack.io
+                helm repo update
+                kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
+                helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.11.0
+                '''
+            } 
      }
+        stage('Install Prometheus') {
+            steps {
+                sh '''
+                kubeclt create namespace monitoring
+                helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+                helm repo update
+                helm install prometheus --namespace monitoring prometheus-community/prometheus
+                '''
+            }
+        }
 
     post {
        success {
