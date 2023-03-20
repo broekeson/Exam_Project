@@ -12,7 +12,7 @@ pipeline {
              def nginx_ip = sh(returnStdout: true, script: "kubectl get svc nginx-ingress-ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'")
              sh '''
              terraform init
-             terraform apply  -var nginx_ip=${nginx_ip} -var DO_TOKEN=${DO_TOKEN} -auto-approve
+             terraform apply  -var DO_TOKEN=${DO_TOKEN} -var nginx_ip=${nginx_ip} -auto-approve
              '''
            }  
           }
