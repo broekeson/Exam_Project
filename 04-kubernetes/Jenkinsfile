@@ -25,9 +25,9 @@ pipeline {
           steps {
               dir('04-kubernetes') {
               sh '''
-              kubectl apply -f 01-k8s-sock-shop/complete-demo.yaml
-              kubectl apply -f 01-k8s-sock-shop/manifests-monitoring/
-              kubectl apply -f 01-k8s-sock-shop/manifests-alerting/
+              kubectl apply -f 01-k8s-sock-app/complete-demo.yaml
+              kubectl apply -f 01-k8s-sock-app/manifests-monitoring/
+              kubectl apply -f 01-k8s-sock-app/manifests-alerting/
               '''
               }
           }
