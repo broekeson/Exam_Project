@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('deploy') {
           steps {
-              dir('02-k8s-web-app') {
+              dir('04-kubernetes') {
               sh '''
               kubectl apply -f 02-k8s-web-app/secret.yaml
               kubectl apply -f configMap.yaml
