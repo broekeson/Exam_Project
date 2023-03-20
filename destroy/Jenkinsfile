@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('destroy cluster') {
             steps {
-                dir('01-terraform') {
+                dir('./01-terraform') {
                     sh '''
                     terraform init
                     terraform destroy -auto-approve -var DO_TOKEN=${DO_TOKEN}
@@ -17,7 +17,7 @@ pipeline {
 
          stage('Destroy DNS') {
             steps {
-                dir('05-terraform/terraform') {
+                dir('./05-terraform/terraform') {
                     sh '''
                     terraform init
                     terraform destroy -auto-approve -var DO_TOKEN=${DO_TOKEN}
