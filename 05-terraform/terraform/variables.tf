@@ -1,6 +1,9 @@
 variable "DO_TOKEN" {}
 
-variable "nginx_ip" {}
+variable "nginx_ip" {
+  type    = string
+  default = "157.245.29.7"
+}
 
 variable "cluster_name" {
   type    = string
