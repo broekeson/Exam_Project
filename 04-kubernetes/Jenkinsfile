@@ -32,16 +32,6 @@ pipeline {
               }
           }
        }
-       stage('DNS Setup') {
-          steps {
-              dir('05-terraform') {
-                sh '''
-                terraform init
-                terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
-                '''
-              }
-          }
-        }
         stage('Install cert-manager') {
           steps {
             sh '''

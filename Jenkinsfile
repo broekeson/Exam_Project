@@ -30,7 +30,7 @@ pipeline {
 
     post {
        success {
-        build 'deploy'
+        build 'dns'
        }
     }
 }
