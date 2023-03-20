@@ -21,16 +21,16 @@ pipeline {
               }
           }
       }
-        stage('deploy-web-app') {
-           steps {
-               dir('04-kubernetes') {
-               sh '''
-               kubectl apply -f 02-k8s-sock-shop/complete-demo.yaml
-               kubectl apply -f 02-k8s-sock-shop/manifests-monitoring/
-               kubectl apply -f 02-k8s-sock-shop/manifests-alerting/
-               '''
-               }
-           }
+        stage('deploy-sock-shop') {
+          steps {
+              dir('04-kubernetes') {
+              sh '''
+              kubectl apply -f 02-k8s-sock-shop/complete-demo.yaml
+              kubectl apply -f 02-k8s-sock-shop/manifests-monitoring/
+              kubectl apply -f 02-k8s-sock-shop/manifests-alerting/
+              '''
+              }
+          }
        }
     } 
 }
