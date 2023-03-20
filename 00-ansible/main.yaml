@@ -64,3 +64,8 @@
     - name: update apt cache
       apt:
         update_cache: yes
+
+    - name: install terraform
+      apt:
+        name: terraform
+        state: present
