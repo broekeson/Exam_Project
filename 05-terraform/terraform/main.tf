@@ -8,7 +8,7 @@ data "digitalocean_kubernetes_cluster" "primary" {
 }
 
 data "digitalocean_loadbalancer" "alb" {
-  name = data.digitalocean_kubernetes_cluster.primary.load_balancers_name
+  name = data.digitalocean_kubernetes_cluster.primary.load_balancers[0].name
 }
 
 resource "digitalocean_domain" "mydomain" {
