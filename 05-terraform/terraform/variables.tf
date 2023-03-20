@@ -1,6 +1,6 @@
 variable "DO_TOKEN" {}
 
-variable "external_ip" {}
+variable "ingress_ip" {}
 
 variable "cluster_name" {
   type    = string
