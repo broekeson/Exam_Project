@@ -22,22 +22,22 @@ variable "record_type" {
 
 variable "sockshop" {
   type    = string
-  default = "sock-shop"
+  default = "sock-shop."
 }
 
 variable "webapp" {
   type    = string
-  default = "web-app"
+  default = "web-app."
 }
 
 variable "grafana" {
   type    = string
-  default = "grafana"
+  default = "grafana."
 }
 
 variable "prometheus" {
   type    = string
-  default = "prometheus"
+  default = "prometheus."
 }
 
 variable "worker_name" {
