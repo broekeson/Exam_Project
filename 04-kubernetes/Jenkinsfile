@@ -10,13 +10,13 @@ pipeline {
           steps {
               dir('04-kubernetes') {
               sh '''
-              kubectl apply -f 02-k8s-web-app/a-namespace.yaml
-              kubectl apply -f 02-k8s-web-app/secret.yaml
-              kubectl apply -f 02-k8s-web-app/configMap.yaml
-              kubectl apply -f 02-k8s-web-app/db-deployment.yaml
-              kubectl apply -f 02-k8s-web-app/db-service.yaml
-              kubectl apply -f 02-k8s-web-app/web-app-deployment.yaml
-              kubectl apply -f 02-k8s-web-app/web-app-service.yaml
+              kubectl apply -f 01-k8s-web-app/a-namespace.yaml
+              kubectl apply -f 01-k8s-web-app/secret.yaml
+              kubectl apply -f 01-k8s-web-app/configMap.yaml
+              kubectl apply -f 01-k8s-web-app/db-deployment.yaml
+              kubectl apply -f 01-k8s-web-app/db-service.yaml
+              kubectl apply -f 01-k8s-web-app/web-app-deployment.yaml
+              kubectl apply -f 01-k8s-web-app/web-app-service.yaml
               '''
               }
           }
