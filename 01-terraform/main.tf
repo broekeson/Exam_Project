@@ -18,11 +18,11 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
   vpc_uuid = digitalocean_vpc.altschool_vpc.id
   node_pool {
     name = var.worker_name
-    size = "s-2vcpu-2gb"
+    size = "s-2vcpu-2gb-intel"
     node_count = 3
     auto_scale = true
-    min_nodes = 1
-    max_nodes = 5
+    min_nodes = 2
+    max_nodes = 6
     tags = [ "workers" ]
   }
 }
