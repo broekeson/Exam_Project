@@ -6,17 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('authenticate') {
-            steps {
-                sh '''
-                curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-                helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-                helm repo update
-                helm install nginx-ingress ingress-nginx/ingress-nginx
-                '''
-            }
-        }
-        
         stage('deploy') {
           steps {
               dir('02-k8s-web-app') {
