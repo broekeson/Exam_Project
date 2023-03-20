@@ -2,7 +2,7 @@ variable "DO_TOKEN" {}
 
 variable "nginx_ip" {
   type    = string
-  default = "157.245.29.7."
+  default = "157.245.29.7"
 }
 
 variable "cluster_name" {
@@ -10,9 +10,15 @@ variable "cluster_name" {
   default = "altschool-cluster"
 }
 
-variable "domain_name" {
+variable "mydomain" {
   type    = string
   default = "ekene.tech"
+}
+
+
+variable "domain_name" {
+  type    = string
+  default = "ekene.tech."
 }
 
 variable "record_type" {

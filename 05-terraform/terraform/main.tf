@@ -4,7 +4,7 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_domain" "mydomain" {
-  name = var.domain_name
+  name = var.mydomain
 }
 
 resource "digitalocean_record" "alb" {
