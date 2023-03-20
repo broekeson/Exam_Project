@@ -32,6 +32,16 @@ pipeline {
               }
           }
        }
+       stage('DNS Setup') {
+          steps {
+              dir('05-terraform') {
+                sh '''
+                terraform init
+                terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
+                '''
+              }
+          }
+        }
         stage('Install cert-manager') {
           steps {
             sh '''
@@ -41,16 +51,6 @@ pipeline {
             helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.11.0
             '''
           } 
-        }
-         stage('DNS Setup') {
-          steps {
-              dir('05-terraform') {
-                sh '''
-                terraform init
-                terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
-                '''
-              }
-          }
         }
          stage('Create ClusterIssuer') {
           steps {
