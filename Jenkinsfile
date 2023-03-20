@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
        DO_TOKEN = credentials('do_token')
-       KUBECONFIG = 'kubeconfig.yaml'
+       KUBECONFIG = '/var/lib/jenkins/workspace/altschool/01-terraform/kubeconfig.yaml'
     }
     stages {
         stage('provision cluster') {
@@ -15,6 +15,17 @@ pipeline {
                 }
              }
          }
+
+         stage('heml setup') {
+            steps {
+                sh '''
+                curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+                helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+                helm repo update
+                helm install nginx-ingress ingress-nginx/ingress-nginx
+                '''
+            }
+        }
      }
 
     post {

@@ -50,3 +50,17 @@
       service:
         name: jenkins
         state: started
+
+    - name: terraform repo
+      apt_repository:
+        repo: deb [arch=amd64] https://apt.releases.hashicorp.com bionic main
+        state: present
+
+    - name: terraform key
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+
+    - name: update apt cache
+      apt:
+        update_cache: yes

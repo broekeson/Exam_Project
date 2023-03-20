@@ -10,7 +10,7 @@ pipeline {
           steps {
               dir('02-k8s-web-app') {
               sh '''
-              kubectl apply -f secret.yaml
+              kubectl apply -f 02-k8s-web-app/secret.yaml
               kubectl apply -f configMap.yaml
               kubectl apply -f a-namespace.yaml
               kubectl apply -f db-deployment.yaml
