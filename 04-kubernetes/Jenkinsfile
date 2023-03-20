@@ -42,6 +42,16 @@ pipeline {
             '''
           } 
         }
+         stage('DNS Setup') {
+          steps {
+              dir('05-terraform') {
+                sh '''
+                terraform init
+                terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
+                '''
+              }
+          }
+        }
          stage('Create ClusterIssuer') {
           steps {
               dir('04-kubernetes') {
