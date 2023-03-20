@@ -9,7 +9,7 @@ pipeline {
         steps {
           dir('05-terraform/terraform') {
            script {
-             def nginx_ip = sh(returnStdout: true, script: "kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'")
+             def nginx_ip = sh(returnStdout: true, script: "kubectl get svc nginx-ingress-ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}'")
              sh '''
              terraform init
              terraform apply  -var nginx_ip=$nginx_ip -var DO_TOKEN=${DO_TOKEN} -auto-approve
