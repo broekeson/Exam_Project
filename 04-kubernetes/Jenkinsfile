@@ -50,7 +50,7 @@ pipeline {
               kubectl apply -f ingress-controller/monitoring.yaml
               kubectl apply -f ingress-controller/sock-shop-ingress.yaml
               kubectl apply -f ingress-controller/web-app-ingress.yaml
-                '''
+              '''
                 }
             }
          }
