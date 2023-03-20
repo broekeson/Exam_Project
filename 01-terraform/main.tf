@@ -19,10 +19,10 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
   node_pool {
     name = var.worker_name
     size = "s-2vcpu-2gb-intel"
-    node_count = 3
+    node_count = 4
     auto_scale = true
-    min_nodes = 2
-    max_nodes = 6
+    min_nodes = 3
+    max_nodes = 8
     tags = [ "workers" ]
   }
 }
