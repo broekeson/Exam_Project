@@ -17,7 +17,7 @@ pipeline {
             }
         }
         
-        stage('authenticate') {
+        stage('deploy') {
           steps {
               dir('02-k8s-web-app')
               sh '''
