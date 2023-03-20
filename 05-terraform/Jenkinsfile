@@ -6,7 +6,7 @@ pipeline {
     stages {
        stage('DNS Setup') {
           steps {
-              dir('terraform') {
+              dir('05-terraform/terraform') {
                 sh '''
                 terraform init
                 terraform apply -auto-approve -var DO_TOKEN=${DO_TOKEN}
