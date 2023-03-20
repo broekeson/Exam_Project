@@ -27,8 +27,6 @@ pipeline {
               sh '''
               kubectl apply -f 01-k8s-sock-app/complete-demo.yaml
               kubectl apply -f 01-k8s-sock-app/manifests-monitoring/
-              kubectl apply -f 01-k8s-sock-app/manifests-alerting/
-              kubeclt apply -f 01-k8s-sock-app/manifests-policy/
               '''
               }
           }
