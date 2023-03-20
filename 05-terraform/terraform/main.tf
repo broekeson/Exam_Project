@@ -13,7 +13,14 @@ data "digitalocean_loadbalancer" "alb" {
 
 resource "digitalocean_domain" "mydomain" {
   name  = var.domain_name
-  value = data.digitalocean_loadbalancer.alb.ip
+}
+
+resource "digitalocean_record" "alb" {
+  domain = digitalocean_domain.mydomain.name
+  type   = "A"
+  name   = var.domain_name
+  value  = data.digitalocean_loadbalancer.alb.ip
+  ttl    = 3600
 }
 
 resource "digitalocean_record" "sockshop" {
