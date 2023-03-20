@@ -7,7 +7,7 @@ pipeline {
         stage('destroy cluster') {
             steps {
 <<<<<<< HEAD
-                dir('/01-terraform') {
+                dir('./01-terraform') {
 =======
                 dir('./01-terraform') {
 >>>>>>> 3d00591411d7c4825e6c118c216f58db6c46da97
