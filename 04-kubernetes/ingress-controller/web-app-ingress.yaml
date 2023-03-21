@@ -22,3 +22,4 @@ spec:
             name: web-app-service
             port:
               number: 80
+  ingressClassName: nginx
