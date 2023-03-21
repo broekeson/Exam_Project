@@ -5,15 +5,14 @@ metadata:
   name: sock-shop
   namespace: sock-shop
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
   - hosts:
-    - sock-shop.abtl.ng
+    - sock-shop.ekene.tech
     secretName: sock-shop-tls
   rules:
-  - host: sock-shop.abtl.ng
+  - host: sock-shop.ekene.tech
     http:
      paths:
       - path: /
