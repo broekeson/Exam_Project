@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
        DO_TOKEN = credentials('do_token')
-       KUBECONFIG = '/var/lib/jenkins/workspace/altschool/01-terraform/kubeconfig.yaml'
+       KUBECONFIG = '/var/lib/jenkins/workspace/provisioning_cluster/01-terraform/kubeconfig.yaml'
     }
     stages {
        stage('Get External IP') {
