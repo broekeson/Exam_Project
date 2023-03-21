@@ -12,13 +12,13 @@ variable "cluster_name" {
 
 variable "mydomain" {
   type    = string
-  default = "ekene.tech"
+  default = "abtl.ng"
 }
 
 
 variable "domain_name" {
   type    = string
-  default = "ekene.tech."
+  default = "abtl.ng."
 }
 
 variable "record_type" {
