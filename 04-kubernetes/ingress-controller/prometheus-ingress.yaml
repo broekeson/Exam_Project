@@ -2,24 +2,24 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: grafana
+  name: prometheus
   namespace: monitoring
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
   - hosts:
-    - grafana.ekene.tech
+    - prometheus.ekene.tech
     secretName: letsencrypt-prod
   rules:
-  - host: grafana.ekene.tech
+  - host: prometheus.ekene.tech
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: grafana
+            name: prometheus
             port:
               number: 80
   ingressClassName: nginx
