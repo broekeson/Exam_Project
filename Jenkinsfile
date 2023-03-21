@@ -27,6 +27,16 @@ pipeline {
             }
         }
 
+         stage('Install Prometheus') {
+            steps {
+                sh '''
+                kubectl create namespace monitoring
+                helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+                helm repo update
+                helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring
+                '''
+            }
+
          stage('Installing cert-manager') {
             steps {
                 sh '''
@@ -36,8 +46,9 @@ pipeline {
                 kubectl create namespace cert-manager
                 helm install cert-manager --namespace cert-manager --version v1.11.0 jetstack/cert-manager
                 '''
-            } 
-        }     
+            }
+        } 
+
         stage('deploy-web-app') {
             steps {
                 dir('04-kubernetes') {
@@ -53,6 +64,7 @@ pipeline {
                 }
             }
         }
+
         stage('deploy-sock-shop') {
             steps {
                 dir('04-kubernetes') {
@@ -64,6 +76,7 @@ pipeline {
               }
           }
         }
+
         stage('Create ClusterIssuer & Ingress Rules') {
           steps {
               dir('04-kubernetes') {
