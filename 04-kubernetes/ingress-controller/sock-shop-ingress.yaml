@@ -5,12 +5,12 @@ metadata:
   name: sock-shop
   namespace: sock-shop
   annotations:
-    cert-manager.io/issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
   - hosts:
     - sock-shop.ekene.tech
-    secretName: sock-shop-tls
+    secretName: letsencrypt-prod
   rules:
   - host: sock-shop.ekene.tech
     http:
