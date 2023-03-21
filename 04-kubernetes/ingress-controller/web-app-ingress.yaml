@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - web-app.abtl.ng
+    - web-app.ekene.tech
     secretName: web-app-tls
   rules:
-  - host: web-app.abtl.ng
+  - host: web-app.ekene.tech
     http:
       paths:
       - path: /
