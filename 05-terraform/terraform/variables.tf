@@ -1,9 +1,6 @@
 variable "DO_TOKEN" {}
 
-variable "nginx_ip" {
-  type    = string
-  default = "46.101.66.166"
-}
+variable "nginx_ip" {}
 
 variable "cluster_name" {
   type    = string
@@ -12,18 +9,12 @@ variable "cluster_name" {
 
 variable "mydomain" {
   type    = string
-  default = "abtl.ng"
-}
-
-
-variable "domain_name" {
-  type    = string
-  default = "abtl.ng."
+  default = "ekene.tech"
 }
 
 variable "record_type" {
   type    = string
-  default = "CNAME"
+  default = "A"
 }
 
 variable "sockshop" {
@@ -44,9 +35,4 @@ variable "grafana" {
 variable "prometheus" {
   type    = string
   default = "prometheus"
-}
-
-variable "worker_name" {
-  type    = string
-  default = "altschool-pool"
 }
