@@ -3,6 +3,7 @@ pipeline {
     environment {
        DO_TOKEN = credentials('do_token')
        KUBECONFIG = '/var/lib/jenkins/workspace/provisioning_cluster/01-terraform/kubeconfig.yaml'
+       SERVICE = 'nginx-ingress-ingress-nginx-controller'
     }
     stages {
         stage('provision cluster') {
@@ -36,6 +37,7 @@ pipeline {
                 helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring
                 '''
             }
+        }
 
         stage('Installing cert-manager') {
             steps {
