@@ -16,7 +16,7 @@ pipeline {
              }
         }
 
-         stage('heml & nginx-ingress setup') {
+        stage('heml & nginx-ingress setup') {
             steps {
                 sh '''
                 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-         stage('Install Prometheus') {
+        stage('Install Prometheus') {
             steps {
                 sh '''
                 kubectl create namespace monitoring
@@ -37,7 +37,7 @@ pipeline {
                 '''
             }
 
-         stage('Installing cert-manager') {
+        stage('Installing cert-manager') {
             steps {
                 sh '''
                 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
