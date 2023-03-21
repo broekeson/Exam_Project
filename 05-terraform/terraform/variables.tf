@@ -2,7 +2,7 @@ variable "DO_TOKEN" {}
 
 variable "nginx_ip" {
   type    = string
-  default = "157.245.29.7"
+  default = "67.207.68.98"
 }
 
 variable "cluster_name" {
