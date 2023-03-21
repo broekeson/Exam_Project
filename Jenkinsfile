@@ -26,7 +26,7 @@ pipeline {
                 '''
             }
         }
-        stage('Install cert-manager') {
+         stage('Install cert-manager') {
             steps {
                 sh '''
                 helm repo add jetstack https://charts.jetstack.io
