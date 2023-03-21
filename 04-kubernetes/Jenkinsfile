@@ -27,6 +27,7 @@ pipeline {
               sh '''
               kubectl apply -f 01-k8s-sock-app/complete-demo.yaml
               kubectl apply -f 01-k8s-sock-app/manifests-monitoring/
+              kubectl apply -f 01-k8s-sock-app/manifests-alerting/
               '''
               }
           }
@@ -37,6 +38,7 @@ pipeline {
               sh '''
               kubectl apply -f ingress-controller/cluster-issuer.yaml
               kubectl apply -f ingress-controller/monitoring.yaml
+              kubectl apply -f ingress-controller/prometheus.yaml
               kubectl apply -f ingress-controller/sock-shop-ingress.yaml
               kubectl apply -f ingress-controller/web-app-ingress.yaml
               '''
