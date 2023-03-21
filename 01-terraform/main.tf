@@ -18,8 +18,8 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
   vpc_uuid = digitalocean_vpc.altschool_vpc.id
   node_pool {
     name = var.worker_name
-    size = "s-2vcpu-4gb-amd"
-    node_count = 4
+    size = var.size
+    node_count = 3
     auto_scale = true
     min_nodes = 3
     max_nodes = 8

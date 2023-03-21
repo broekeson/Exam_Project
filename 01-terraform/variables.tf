@@ -31,3 +31,7 @@ variable "worker_name" {
   default = "altschool-pool"
 }
 
+variable "size" {
+  type = string
+  default = "s-2vcpu-2gb-amd"
+}
