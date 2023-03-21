@@ -17,5 +17,16 @@ pipeline {
           }
          }
        }
+       stage("Get External IP") {
+        steps {
+          dir('05-terraform/terraform') {
+           script {
+             sh '''
+             terraform output -json | jq -r '.external_ip.value'
+             '''
+           }  
+          }
+         }
+       }
     }
 }
