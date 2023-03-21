@@ -32,7 +32,7 @@ pipeline {
                 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
                 helm repo add jetstack https://charts.jetstack.io
                 helm repo update
-                kubeclt create namespace cert-manager
+                kubectl create namespace cert-manager
                 helm install cert-manager --namespace cert-manager --version v1.11.0 jetstack/cert-manager
                 '''
             } 
