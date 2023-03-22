@@ -17,7 +17,7 @@ pipeline {
             steps {
                 dir('05-terraform/terraform') {
                 sh '''
-                terraform destroy -auto-approve -var DO_TOKEN=${DO_TOKEN}
+                terraform destroy -auto-approve -var DO_TOKEN=${DO_TOKEN} -var nginx_ip=$LOAD_BALANCER_IP -auto-approve
                 '''
                 }
              }
