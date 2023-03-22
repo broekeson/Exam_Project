@@ -7,9 +7,9 @@ metadata:
 spec:
   acme:
     email: broekeson@gmail.com
-    server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod
+    server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
     - http01:
         ingress:
