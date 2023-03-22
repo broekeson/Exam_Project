@@ -52,9 +52,9 @@ pipeline {
                 '''
             }
         }
-        stage('Sleep for 30 seconds') {
+        stage('Sleep for 15 seconds') {
             steps {
-                sleep time: 30, unit: 'SECONDS'
+                sleep time: 15, unit: 'SECONDS'
             }
         }
         stage('deploy-web-app') {
