@@ -34,14 +34,29 @@ pipeline {
         stage('Installing cert-manager') {
             steps {
                 sh '''
-                kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
+                kubectl create namespace cert-manager
                 helm repo add jetstack https://charts.jetstack.io
                 helm repo update
-                kubectl create namespace cert-manager
+                kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.11.0/cert-manager.crds.yaml
                 helm install cert-manager --namespace cert-manager --version v1.11.0 jetstack/cert-manager
                 '''
             }
-        } 
+        }
+        stage('Installing Prometheus') {
+            steps {
+                sh '''
+                kubectl create namespace monitoring
+                helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+                helm repo update
+                helm install prometheus --namespace monitoring prometheus-community/prometheus
+                '''
+            }
+        }
+        stage('Sleep for 30 seconds') {
+            steps {
+                sleep time: 30, unit: 'SECONDS'
+            }
+        }
         stage('deploy-web-app') {
             steps {
                 dir('04-kubernetes') {
