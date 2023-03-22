@@ -10,4 +10,4 @@
 2. Link: [Prometheus](https://prometheus.ekene.tech)
 
 
-For more information, please visit [here](
+For more information, please visit [here](https://github.com/broekeson/Exam_Project/blob/main/Deploy.md)
