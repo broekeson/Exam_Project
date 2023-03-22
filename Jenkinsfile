@@ -52,6 +52,17 @@ pipeline {
                 '''
             }
         }
+        stage('Install elastic-stack') {
+            steps {
+                sh '''
+                kubectl create namespace logging
+                helm repo add elastic https://helm.elastic.co
+                helm repo update
+                helm install elasticsearch --namespace logging elastic/elasticsearch
+                helm install kibana --namespace logging elastic/kibana
+                '''
+            }
+        }
         stage('Sleep for 15 seconds') {
             steps {
                 sleep time: 15, unit: 'SECONDS'
