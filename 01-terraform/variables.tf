@@ -33,5 +33,5 @@ variable "worker_name" {
 
 variable "size" {
   type = string
-  default = "s-2vcpu-4gb"
+  default = "s-2vcpu-4gb-amd"
 }

@@ -16,7 +16,6 @@ pipeline {
                 }
              }
         }
-
         stage('heml & nginx-ingress setup') {
             steps {
                 sh '''
@@ -27,7 +26,11 @@ pipeline {
                 '''
             }
         }
-
+        stage('Sleep for 30 seconds') {
+            steps {
+                sleep time: 30, unit: 'SECONDS'
+            }
+        }
         stage('Installing cert-manager') {
             steps {
                 sh '''
@@ -39,7 +42,6 @@ pipeline {
                 '''
             }
         } 
-
         stage('deploy-web-app') {
             steps {
                 dir('04-kubernetes') {
@@ -55,7 +57,6 @@ pipeline {
                 }
             }
         }
-
         stage('deploy-sock-shop') {
             steps {
                 dir('04-kubernetes') {
@@ -67,7 +68,6 @@ pipeline {
               }
           }
         }
-
         stage('Create ClusterIssuer & Ingress Rules') {
           steps {
               dir('04-kubernetes') {
@@ -80,7 +80,6 @@ pipeline {
                 }
             }
         }
-
         stage('Get External IP') {
           steps {
             dir('05-terraform/terraform') {
