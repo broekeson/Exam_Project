@@ -48,5 +48,4 @@ spec:
             name: prometheus
             port:
               number: 80
-  ingressClassName: nginx
 
