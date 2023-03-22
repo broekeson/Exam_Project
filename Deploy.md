@@ -60,3 +60,12 @@ cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 Sit back and relax while the pipeline job runs. It will take about 10 minutes to complete.
 
+<br>
+<br>
+
+### Extras <br>
+----------------
+- Connect your domain to Digital Ocean Nameservers
+- Customize 05-terraform variables.tf file
+- Customize ingress-controller files
+
