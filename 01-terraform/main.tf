@@ -19,9 +19,9 @@ resource "digitalocean_kubernetes_cluster" "altschool_cluster" {
   node_pool {
     name = var.worker_name
     size = var.size
-    node_count = 3
+    node_count = 4
     auto_scale = true
-    min_nodes = 3
+    min_nodes = 4
     max_nodes = 8
     tags = [ "workers" ]
   }
