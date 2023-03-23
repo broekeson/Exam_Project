@@ -36,8 +36,3 @@ variable "prometheus" {
   type    = string
   default = "prometheus"
 }
-
-variable "kibana" {
-  type    = string
-  default = "kibana"
-}

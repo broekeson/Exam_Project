@@ -39,11 +39,3 @@ resource "digitalocean_record" "prometheus" {
   value  = var.nginx_ip
   ttl    = 3600
 }
-
-resource "digitalocean_record" "prometheus" {
-  domain = digitalocean_domain.mydomain.name
-  type   = var.record_type
-  name   = var.kibana
-  value  = var.nginx_ip
-  ttl    = 3600
-}
