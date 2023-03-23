@@ -52,15 +52,6 @@ pipeline {
                 '''
             }
         }
-        stage('Installing Loki') {
-            steps {
-                sh '''
-                helm repo add grafana https://grafana.github.io/helm-charts
-                helm repo update
-                helm install -n monitoring loki grafana/loki
-                '''
-            }
-        }
         stage('Sleep for 15 seconds') {
             steps {
                 sleep time: 15, unit: 'SECONDS'
