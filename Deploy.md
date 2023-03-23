@@ -13,7 +13,8 @@ git clone https://github.com/broekeson/Exam_Project.git
 ### Setup Jenkins Server
 ```bash
 cd Exam_Project/Ansible
-ansible-playbook localhost main.yml # This will setup Jenkins Server, terraform and the required plugins
+ansible-playbook localhost main.yml # This will setup Jenkins Server, terraform and the required plugins on the localhost
+```
 ```
 ### Authenticate to Jenkins Server
 ```bash

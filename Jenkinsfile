@@ -52,14 +52,12 @@ pipeline {
                 '''
             }
         }
-        stage('Install elastic-stack') {
+        stage('Installing Loki') {
             steps {
                 sh '''
-                kubectl create namespace logging
-                helm repo add elastic https://helm.elastic.co
+                helm repo add grafana https://grafana.github.io/helm-charts
                 helm repo update
-                helm install elasticsearch --namespace logging elastic/elasticsearch
-                helm install kibana --namespace logging elastic/kibana
+                helm install -n monitoring loki grafana/loki
                 '''
             }
         }
