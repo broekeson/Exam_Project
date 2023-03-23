@@ -22,7 +22,7 @@ variable "cluster_name" {
 
 variable "version_name" {
   type = string
-  default = "1.25.4-do.0"
+  default = "1.26.3-do.0"
 }
   
 
