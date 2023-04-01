@@ -1,9 +1,12 @@
+#!/usr/bin/env
+
 pipeline {
     agent any
     environment {
        DO_TOKEN = credentials('do_token')
        KUBECONFIG = '/var/lib/jenkins/workspace/provisioning_cluster/01-terraform/kubeconfig.yaml'
        SERVICE = 'nginx-ingress-ingress-nginx-controller'
+       USER = 'broekeson'
     }
     stages {
         stage('provision cluster') {
@@ -26,9 +29,23 @@ pipeline {
                 '''
             }
         }
-        stage('Sleep for 30 seconds') {
+        stage('build docker images') {
             steps {
-                sleep time: 30, unit: 'SECONDS'
+                dir('02-docker') {
+                sh '''
+                docker build -t ${USER}/web-app:latest Dockerfile .
+                '''
+                }
+            }
+        }
+        stage('push to docker hub'){
+            steps {
+                dir('02-docker') {
+                sh '''
+                docker login -u ${USER} -p ${DOCKER_PASSWORD}
+                docker push ${USER}/web-app:latest
+                '''
+                }
             }
         }
         stage('Installing cert-manager') {
