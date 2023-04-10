@@ -1,5 +1,4 @@
 #!/usr/bin/env
-
 pipeline {
     agent any
     environment {
@@ -7,6 +6,7 @@ pipeline {
        KUBECONFIG = '/var/lib/jenkins/workspace/provisioning_cluster/01-terraform/kubeconfig.yaml'
        SERVICE = 'nginx-ingress-ingress-nginx-controller'
        USER = 'broekeson'
+       DOCKERHUB_CREDENTIALS = credentials('dockerhub_credentials')
     }
     stages {
         stage('provision cluster') {
