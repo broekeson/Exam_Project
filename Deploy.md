@@ -40,7 +40,7 @@ cat /var/lib/jenkins/secrets/initialAdminPassword
 # Create the following credentials on Jenkins Server
 - Digital Ocean API Key
 - Github Username and Password
-- SSH Key
+- Docker Hub Username and Password
 ```
 
 ### Create a new pipeline job

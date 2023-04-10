@@ -6,7 +6,8 @@ pipeline {
        KUBECONFIG = '/var/lib/jenkins/workspace/provisioning_cluster/01-terraform/kubeconfig.yaml'
        SERVICE = 'nginx-ingress-ingress-nginx-controller'
        USER = 'broekeson'
-       DOCKERHUB_CREDENTIALS = credentials('dockerhub_credentials')
+       IMAGE_NAME = 'web-app'
+       TAG = 'latest'
     }
     stages {
         stage('provision cluster') {
@@ -29,23 +30,25 @@ pipeline {
                 '''
             }
         }
-        stage('build docker images') {
+        stage('build image') {
             steps {
-                dir('02-docker') {
+                dir('03-docker') {
                 sh '''
-                docker build -t ${USER}/web-app:latest Dockerfile .
+                docker build -t ${USER}/${IMAGE_NAME}:${TAG} .
                 '''
                 }
             }
         }
-        stage('push to docker hub'){
+        stage('push to dockerhub'){
             steps {
-                dir('02-docker') {
+                dir('03-docker') {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh '''
-                docker login -u ${USER} -p ${DOCKER_PASSWORD}
-                docker push ${USER}/web-app:latest
+                docker login -u ${USERNAME} -p ${PASSWORD}
+                docker push ${USER}/${IMAGE_NAME}:${TAG}
                 '''
                 }
+             }
             }
         }
         stage('Installing cert-manager') {
